@@ -10,7 +10,8 @@ export const color = [
 ]
 export const filters    = [
     {
-        id: "color", name: "Color", 
+        id: "color", 
+        name: "Color", 
         options: [
             { value: "white", label: "White" },
              { value: "beige", label: "Beige" }, 
@@ -18,6 +19,7 @@ export const filters    = [
              { value: "brown", label: "Brown" },
               { value: "green", label: "Green" }, 
               { value: "purple", label: "Purple" },
+              { value: "yellow", label: "Yellow" },
 ]},
     {
         id:"size",
@@ -48,17 +50,16 @@ export const singleFilter    = [
     },
     {
         id:"discount",
-    name:"discount RANGE",
+    name:"Discount Range",
     options : [
-        {value:"70 ", label:"80% and above"},
+        {value:"70 ", label:"70% and above"},
         {value:"80 ", label:"80% and above"},
-        {value:"80 ", label:"80% and above"},
-        {value:"80 ", label:"80% and above"},
+        {value:"90 ", label:"90% and above"},
     ],
     },
     {
             id:"stock",
-            name:"available stock",
+            name:"Available stock",
             options : [
                 {value:"in_stock", label:"còn hàng"},
                 {value:"out_of stock ", label:"hết hàng"},
