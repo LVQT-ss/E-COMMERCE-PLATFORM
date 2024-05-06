@@ -3,6 +3,12 @@ import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import Rating from '@mui/material/Rating';
+import Button from '@mui/material/Button';
+import { Box, Grid ,LinearProgress} from '@mui/material';
+   
+import ProductReviewCard from './ProductReviewCard';
+import { mens_kurta } from '../../../Data/Men_kurta';
+import HomeSectionCard from '../HomSectionCard/HomeSectionCard';
 const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -35,14 +41,11 @@ const product = {
     { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
   ],
   sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
+
     { name: 'S', inStock: true },
     { name: 'M', inStock: true },
     { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
+
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
@@ -66,7 +69,7 @@ export  function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
   return (
-    <div className="bg-white">
+    <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -154,49 +157,13 @@ export  function ProductDetails() {
             </div>
 
             <form className="mt-10">
-              {/* Colors */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">Color</h3>
-
-                <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4">
-                  <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                  <div className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
-                      <RadioGroup.Option
-                        key={color.name}
-                        value={color}
-                        className={({ active, checked }) =>
-                          classNames(
-                            color.selectedClass,
-                            active && checked ? 'ring ring-offset-1' : '',
-                            !active && checked ? 'ring-2' : '',
-                            'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                          )
-                        }
-                      >
-                        <RadioGroup.Label as="span" className="sr-only">
-                          {color.name}
-                        </RadioGroup.Label>
-                        <span
-                          aria-hidden="true"
-                          className={classNames(
-                            color.class,
-                            'h-8 w-8 rounded-full border border-black border-opacity-10'
-                          )}
-                        />
-                      </RadioGroup.Option>
-                    ))}
-                  </div>
-                </RadioGroup>
-              </div>
-
+              
+              
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                  <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    Size guide
-                  </a>
+                 
                 </div>
 
                 <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
@@ -252,12 +219,14 @@ export  function ProductDetails() {
                 </RadioGroup>
               </div>
 
-              <button
-                type="submit"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Add to bag
-              </button>
+
+                        <div className='mt-3'>
+
+                      <Button variant='contained' color='secondary' sx={{px:"2rem",py:"1rem",bgcolor:"9155fd"}} >
+                        Add to cart
+                      </Button>
+
+                        </div>
             </form>
           </div>
 
@@ -296,8 +265,95 @@ export  function ProductDetails() {
         </div>
 
     </section>
+    {/* RATING AND REVIEWS   */}
+       <section className='text-left'>
+                    <h1 className="font-semibold text-lg pb-4">Recent Review & Rating </h1>
+
+                    <div className='border p-7'>
+                      <Grid container spacing={7}>
+
+                        <Grid item xs={7}>
+                          <div className='space-y-5'>
+                               {[1,1,1].map((item)=><ProductReviewCard/>) }
+                          </div>
+                        </Grid>
+
+                        <Grid item sx={5}>
+
+                          <h1 className='text-xl font-semibold pb-1'>Product Rating</h1>
+
+                          <div className='flex items-center space-x-3'>
+                            <Rating value={4.6} precision={.5} readOnly />
+                            <p className='opacity-60'>56784 Ratings</p>
+                          </div>
+                           <Box Box className="mt-5 space-y-3">
+                            
+                            <Grid container  alignItems="center" gap={2}>
+                              <Grid item xs={4}>
+                                <p>Excellent</p>  
+                              </Grid>
+                              <Grid item xs={7}>
+                                  <LinearProgress sx={{bgcolor:"#d0d0d0",borderRadius:4,height:7,width:200}}  variant="determinate" value ={60} color='success'/>
+                              </Grid>
+                            </Grid>
+                          </Box>
+
+                          <Box Box className="mt-5">
+                            
+                            <Grid container  alignItems="center" gap={2}>
+                              <Grid item xs={4}>
+                                <p>very good</p>  
+                              </Grid>
+                              <Grid item xs={7}>
+                                  <LinearProgress sx={{bgcolor:"#d0d0d0",borderRadius:4,height:7,width:200}}  variant="determinate" value ={50} color='success'/>
+                              </Grid>
+                            </Grid>
+                          </Box>
+                          <Box Box className="mt-5">
+                            
+                            <Grid container  alignItems="center" gap={2}>
+                              <Grid item xs={4} >
+                                <p>good</p>  
+                              </Grid>
+                              <Grid item xs={7}>
+                                  <LinearProgress sx={{bgcolor:"#d0d0d0",borderRadius:4,height:7,width:200}}   variant="determinate" value ={40} color='success'/>
+                              </Grid>
+                            </Grid>
+                          </Box>
+                          <Box Box className="mt-5">
+                            
+                            <Grid container  alignItems="center" gap={2}>
+                              <Grid item xs={4}>
+                                <p>avarage</p>  
+                              </Grid>
+                              <Grid item xs={7}>
+                                  <LinearProgress sx={{bgcolor:"#d0d0d0",borderRadius:4,height:7,width:200}}  variant="determinate" value ={30} color='warning'/>
+                              </Grid>
+                            </Grid>
+                          </Box>
+                          <Box Box className="mt-5">
+                            
+                            <Grid container  alignItems="center" gap={2}>
+                              <Grid item xs={4}>
+                                <p>poor</p>  
+                              </Grid>
+                              <Grid item xs={7}>
+                                  <LinearProgress sx={{bgcolor:"#d0d0d0",borderRadius:4,height:7,width:200}}   variant="determinate" value ={20} color='error'/>
+                              </Grid>
+                            </Grid>
+                          </Box>
+
+                        </Grid>
+                      </Grid>
+
+                    </div>
+       </section>
        
-       
+       {/* SIMILAR PRODUCT */}
+       <section className='pt-10 ml-20'>
+                    <h1 className='py-5 text-xl font-bold'>SIMILAR PRODUCT</h1>
+                    <div className='flex flex-wrap space-y-5'>{mens_kurta.map((item)=><HomeSectionCard product={item}/>)}</div>
+       </section>
       </div>
     </div>
   )
