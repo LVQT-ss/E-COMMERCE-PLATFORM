@@ -1,5 +1,7 @@
 
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import CusomerRouters from './Routes/CusomerRouters';
 import Cart from './customer/components/Cart/Cart';
 import Checkout from './customer/components/Checkout/Checkout';
 import Footer from './customer/components/Footer/Footer';
@@ -16,18 +18,18 @@ import HomePage from './customer/pages/HomePage/HomePage';
 function App() {
   return (
     <div className="App">
-      <Navigation/>
+
+<Routes>
+  <Route path="/*" element={<CusomerRouters />} />
+
+</Routes>
+
+      
 
       <div>
-        {/* <HomePage /> */}
-        {/* <Product/> */}
-        {/* <ProductDetails/> */}
-        {/* <Cart/> */}
-        {/* <Checkout/> */}
-        {/* <Order/> */}
-        <OrderDetail/>
+       
       </div>
-      <Footer/>
+     
 
     </div>
   );
