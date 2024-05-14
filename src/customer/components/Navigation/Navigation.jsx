@@ -16,23 +16,31 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
+
   const [open, setOpen] = useState(false);
 
   const  navigate =useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
+
   const [anchorEl, setAnchorEl] = useState(null);
+
   const openUserMenu = Boolean(anchorEl);
+
   const jwt = localStorage.getItem("jwt");
 
 
+   // This function is called when the user avatar is clicked
   const handleUserClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget); // Set the anchorEl to the current target, which should be the Avatar
   };
-  const handleCloseUserMenu = (event) => {
-    setAnchorEl(null);
-  };
-
+ // This function is called to close the user menu
+ const handleCloseUserMenu = () => {
+  setAnchorEl(null); // Reset the anchorEl to null to close the menu
+};
+const handleOpenSignIn = () => {
+  // Implement your sign-in logic here
+};
   const handleOpen = () => {
     setOpenAuthModal(true);
   };
@@ -393,16 +401,16 @@ export default function Navigation() {
                       >
                        R
                       </Avatar>
-                      {/* <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleUserClick}
+                     
+                      <Menu
+                          id="basic-menu"
+                          anchorEl={anchorEl}
+                          open={openUserMenu}
+                          onClose={handleCloseUserMenu}
+                          MenuListProps={{
+                            "aria-labelledby":"basic-button",
+                          }}
                       >
-                        Dashboard
-                      </Button> */}
-                      <Menu>
                         <MenuItem onClick={handleCloseUserMenu}>
                         Profile
                         </MenuItem>
