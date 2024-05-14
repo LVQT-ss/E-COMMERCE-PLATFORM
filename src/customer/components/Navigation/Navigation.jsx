@@ -19,7 +19,7 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
 
   const  navigate =useNavigate();
-  
+
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
@@ -403,10 +403,13 @@ export default function Navigation() {
                         Dashboard
                       </Button> */}
                       <Menu>
-                        <MenuItem>
-                        profile
+                        <MenuItem onClick={handleCloseUserMenu}>
+                        Profile
                         </MenuItem>
-                        my orders
+                        <MenuItem onClick={()=>navigate("/account/order")}>
+                        My Orders
+
+                        </MenuItem>
                         <MenuItem >Logout</MenuItem>
                       </Menu>
                     </div>
